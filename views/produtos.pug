@@ -1,0 +1,43 @@
+doctype html
+html(lang="pt")
+    head
+        meta(charset="utf-8")
+        title Produtos
+    body
+        h1 Produtos
+        table(id="tabelaProdutos")
+            thead
+                tr
+                    th Id
+                    th Produto
+                    th Preço
+                    th Tipo
+            tbody
+                each produto in produtos 
+                    if produto.produto
+                        tr
+                            td #{produto.id_produto}  
+                            td #{produto.produto}  
+                            td #{produto.preco}€
+                            td #{produto.tipoDeProduto}
+        form(action="/addProduto", method="post", onsubmit="return validate();")
+            h2 Adicionar Produtos
+            input(id="produtoName", name="produtoName", type="produtoName")
+            input(id="produtoPreco", name="produtoPreco", type="number")
+            select(id="tipoDeProdutoId", name="tipoDeProdutoId")
+                each tipo in tiposDeProduto
+                    option(value = tipo.id_tipoDeProduto) #{tipo.tipoDeProduto}
+            input(type="submit")
+        form(action = "/removeProduto", method="post", onsubmit="return validate();")
+            h2 Remover Produto
+            input(id="idProduto",name="idProduto", type="number" )
+            input(type="submit")
+        form(action="/updateProduto", method="post", onsubmit="return validate();")
+            h2 Update um Produto
+            input(id="idProduto",name="idProduto", type="number" )
+            input(id="nameProduto", name="nameProduto", type="produtoName")
+            input(id="precoProduto", name="precoProduto", type="number")
+            select(id="tipoDeProduto", name="tipoDeProduto")
+                each tipo in tiposDeProduto
+                    option(value = tipo.id_tipoDeProduto) #{tipo.tipoDeProduto}
+            input(type="submit")

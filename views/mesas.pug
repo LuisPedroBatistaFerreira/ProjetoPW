@@ -1,0 +1,15 @@
+doctype html
+html(lang="pt")
+    head
+        meta(charset="utf-8")
+        title Mesas
+    body
+        h1 Mesas
+        each mesa in mesas
+            if mesa.id_mesa
+                button(type="button") #{mesa.id_mesa}
+        h1 Mesa 1
+        each produto in orders
+            if produto.produto
+                p #{produto.produto} #{produto.preco} #{produto.preco * produto.countParaProduto} 
+

@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+  head
+    title= mainPage
+  body
+    h1 Mesa 1
+        each produto in orders
+            if produto.produto
+                p #{produto.produto} #{produto.preco} #{produto.preco * produto.countParaProduto} 
+

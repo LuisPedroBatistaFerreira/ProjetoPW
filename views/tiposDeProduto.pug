@@ -1,0 +1,33 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title Tipos de Produto
+    body
+        div(class="header")
+            h1 Sabores do Prazer
+            h2 Tipo de Produtos
+            ul(id="menu")
+                li
+                    a(href="/produtos") Produtos
+                    a(href="/mesas") mesas
+                    a(href="/order") mesas
+        form(action = "/", method="get")
+            ul(id="tipoDeProduto-list")
+                    each tipo in tiposDeProduto
+                        if tipo.tipoDeProduto
+                            li #{tipo.id_tipoDeProduto}: #{tipo.tipoDeProduto}
+        form(action = "/addTipoDeProduto", method="post", onsubmit="return validate();")
+            h2 Adicionar Tipo de Produto
+            input(id="tipoDeProduto",name="tipoDeProduto", type="text" )
+            input(type="submit")
+        form(action = "/removeTipoDeProduto", method="post", onsubmit="return validate();")
+            h2 Remover Tipo de Produto
+            input(id="id",name="id", type="number" )
+            input(type="submit")
+        form(action = "/updateTipoDeProduto", method="post", onsubmit="return validate();")
+            h2 Update Tipo de Produto
+            input(id="id_update",name="id_update", type="number" )
+            input(id="tipoDeProdutoUpdate", name="tipoDeProdutoUpdate", type="text")
+            input(type="submit")
+        
