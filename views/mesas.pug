@@ -7,8 +7,4 @@ html(lang="pt")
     body
         h1 Mesas
         ul(id = "listaMesas")
-            each mesa in mesas
-                if mesa.id_mesa
-                    li
-                        button(type="button", id="button_mesa", onclick="fetchOrder()") #{mesa.id_mesa}
         div(id = "detalhesMesa")

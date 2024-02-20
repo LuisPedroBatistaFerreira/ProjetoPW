@@ -18,6 +18,7 @@ app.post("/removeProduto", requestHandlers.removeProduto);
 app.post("/updateProduto", requestHandlers.updateProduto);
 app.get("/produtos", requestHandlers.produtos);
 app.get("/mesas", requestHandlers.mesas);
+app.get("/getMesas", requestHandlers.getMesas);
 app.get("/order", requestHandlers.orderMesa);
 
 app.listen(8081, function(){

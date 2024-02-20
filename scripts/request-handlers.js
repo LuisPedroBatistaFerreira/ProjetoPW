@@ -124,11 +124,14 @@ async function mesas(request, response){
     }); 
 };
 
+async function getMesas(request, response){
+    let rows = await execute(response, "SELECT * FROM Mesa", []);
+    response.json(rows);
+};
+
 async function orderMesa(request, response){
     let rows = await execute(response, "SELECT Produto.produto, Produto.preco, Orders.countParaProduto FROM Orders JOIN Produto ON Orders.id_produto = Produto.id_produto WHERE Orders.id_mesa = 1;",[]);
-    response.render("order", {
-        orders: rows
-    })
+    response.json(rows);
 }
 
 module.exports.tiposDeProduto = tiposDeProduto; 
@@ -141,3 +144,4 @@ module.exports.addProduto = addProduto;
 module.exports.removeProduto = removeProduto;
 module.exports.updateProduto = updateProduto;
 module.exports.orderMesa = orderMesa;
+module.exports.getMesas = getMesas;
