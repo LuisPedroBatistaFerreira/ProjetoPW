@@ -26,3 +26,24 @@ INSERT INTO Produto(produto, preco,id_tipoDeProduto)  VALUES("Bitoque", 10.0, 1)
 INSERT INTO Produto(produto, preco,id_tipoDeProduto)  VALUES("Dourada", 12.0, 2);
 INSERT INTO Produto(produto, preco,id_tipoDeProduto)  VALUES("Doce Da Casa", 5.5, 3);
 INSERT INTO Produto(produto, preco,id_tipoDeProduto)  VALUES("Pão", 1, 4);
+
+CREATE TABLE Mesa (
+	id_mesa int primary key auto_increment,
+    id_orders int
+);
+
+CREATE TABLE Orders (
+	id_orders int primary key auto_increment,
+    id_mesa int,
+    id_produto int,
+    countParaProduto int
+);
+
+ALTER TABLE Mesa
+ADD FOREIGN KEY (id_orders) REFERENCES Orders(id_orders) ON DELETE SET NULL;
+
+ALTER TABLE Orders
+ADD FOREIGN KEY (id_produto) REFERENCES Produto(id_produto) ON DELETE SET NULL;
+
+ALTER TABLE Orders
+ADD FOREIGN KEY (id_mesa) REFERENCES Mesa(id_mesa) ON DELETE CASCADE;
