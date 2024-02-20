@@ -2,14 +2,13 @@ doctype html
 html(lang="pt")
     head
         meta(charset="utf-8")
+        script(src='/scripts/main.js')
         title Mesas
     body
         h1 Mesas
-        each mesa in mesas
-            if mesa.id_mesa
-                button(type="button") #{mesa.id_mesa}
-        h1 Mesa 1
-        each produto in orders
-            if produto.produto
-                p #{produto.produto} #{produto.preco} #{produto.preco * produto.countParaProduto} 
-
+        ul(id = "listaMesas")
+            each mesa in mesas
+                if mesa.id_mesa
+                    li
+                        button(type="button", id="button_mesa", onclick="fetchOrder()") #{mesa.id_mesa}
+        div(id = "detalhesMesa")

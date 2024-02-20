@@ -2,8 +2,8 @@
 const mysql = require("mysql2/promise");
 
 const connectionOptions = {
-    "host": "127.0.0.1",
-    "user": "Luis",
+    "host": "localhost",
+    "user": "luisFerreira",
     "password": "luispedro2003",
     "database": "ProjetoPW"
 }
@@ -29,6 +29,11 @@ async function tiposDeProduto(request, response){
 };
 
 async function addTipoDeProduto(request, response){
+    let sameTipo = await execute(response, "SELECT * FROM TiposDeProduto WHERE tipoDeProduto LIKE ?",[request.body.tipoDeProduto]);
+    if(sameTipo.length > 0){
+        console.error("Tipo de produto já existe");
+        return;			
+    }
     if(request.body.tipoDeProduto){
         await execute(response, "INSERT INTO TiposDeProduto(tipoDeProduto) VALUES(?)",[request.body.tipoDeProduto]);
         response.redirect("/");
@@ -70,6 +75,13 @@ async function addProduto(request, response){
     let nameProduto = request.body.produtoName;
     let preco = Number(request.body.produtoPreco);
     let id_tipoDeProduto = Number(request.body.tipoDeProdutoId);
+
+    let sameProduto = await execute(response, "SELECT * FROM Produto WHERE produto LIKE ? AND id_tipoDeProduto = ?",[nameProduto, id_tipoDeProduto]);
+    if(sameProduto.length > 0){
+        console.error("Produto já existe");
+        return;			
+    }
+
     if(nameProduto && preco && id_tipoDeProduto){
         await execute(response, "INSERT INTO Produto(produto, preco,id_tipoDeProduto)  VALUES(?, ?, ?)",[nameProduto, preco, id_tipoDeProduto]);
         response.redirect("/produtos")
